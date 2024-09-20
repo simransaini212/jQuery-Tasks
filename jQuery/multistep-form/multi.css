@@ -1,0 +1,68 @@
+body{
+    margin: 0;
+    padding: 0;
+
+}
+.container{
+    max-width: 1240px;
+    margin: 0 auto;
+}
+.hero h3{
+    text-align: center;
+}
+.multi-f{
+    height: 30vh;
+    display: flex;
+    align-items: center;
+}
+.hero{
+    margin-top: 100px;
+    border: 1px solid grey;
+    border-radius: 20px;
+    padding: 40px;
+    background-color: #6f926194;
+}
+.div1, .div2, .div3, .div4, .div5{
+    width:100%;
+    padding: 20px 30px;
+}
+input[type="text"], input[type="number"], input[type="email"]{
+    height: 30px;
+    width: 40%;
+    border-radius: 10px;
+    border: 1px solid grey;
+}
+label{
+    font-size: 25px;
+}
+.buttons{
+    display: flex;
+    justify-content: end;
+    margin-top: 30px;
+}
+.prev, .next{
+    padding: 10px 15px;
+    font-size: 20px;
+    margin-right: 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.prev{
+    background-color: grey;
+    color: aliceblue;
+}
+.next{
+    background-color: green;
+    color: white;
+}
+.div5 h3{
+    color: #615dcb;
+    font-size: 29px;
+}
+.div3 form, .div4 form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}

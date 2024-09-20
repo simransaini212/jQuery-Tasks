@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="multi.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title>Multi Step form</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="hero">
+            <h3>FEEDBACK FORM</h3>
+            <div class="multi-f">
+
+                <div class="div1">
+                    <form action="">
+                        <label for="name">Name</label>
+                        <input type="text">
+                        <label for="age" style="margin: 10px;">Age</label>
+                        <input type="number">
+                    </form>
+                </div>
+                <div class="div2">
+                    <form action="">
+                        <label for="phone">Phone</label>
+                        <input type="text">
+                        <label for="email" style="margin: 10px;">Email</label>
+                        <input type="email">
+                    </form>
+                </div>
+                <div class="div3">
+                    <form action="">
+                        <label for="name">Did the product meet your expectation?</label>
+                        <textarea name="" id="" cols="100" rows="5"></textarea>
+                    </form>
+                </div>
+                <div class="div4">
+                    <form action="">
+                        <label for="name">Was the customer service provided to you satisfactory?</label>
+                        <textarea name="" id="" cols="100" rows="5"></textarea>
+                    </form>
+                </div>
+                <div class="div5">
+                    <h3>Thank you for your Feedback!</h3>
+                </div>
+
+            </div>
+            <div class="buttons">
+                <button class="prev">Previous</button>
+                <button class="next">Next</button>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        $(document).ready(function () {
+
+            $(".div1").siblings().hide();
+            $(".prev").hide();
+           
+
+            $(".next").click(function () {
+                let currentDiv = $('.multi-f > div:visible'); 
+                var isValid=true;
+                currentDiv.find('input, textarea').each(function(){
+                    if($(this).val().trim()=== ""){
+                        isValid=false;
+                        alert("This field is mandatory");
+                        return false;
+                    }
+
+                });
+               
+                if(isValid){
+                   
+                    let nextDiv = currentDiv.next('div');
+
+                    if (nextDiv.length != 0) {
+                        nextDiv.show();
+                        currentDiv.hide();
+                        $(".prev").show();
+
+
+                        if (nextDiv.hasClass('div5')) {
+                            $(".next").text("Submit")
+                            $(".prev").hide();
+                        }
+                    }
+                }
+            })
+
+
+
+            $(".prev").click(function () {
+                let currentDiv = $('.multi-f > div:visible');
+                let prevDiv = currentDiv.prev('div');
+                if (prevDiv.length != 0) {
+                    currentDiv.hide();
+                    prevDiv.show();
+                }
+            })
+
+        });
+    </script>
+</body>
+
+            <!-- // $(".next").click(function () {
+                
+              
+            //         let currentDiv = $('.multi-f > div:visible');
+
+            //         let nextDiv = currentDiv.next('div');
+
+            //         if (nextDiv.length != 0) {
+            //             if ($(".currentDiv input").val() == null) {
+            //         alert("All fields are mandatory");
+            //     }else{
+            //             nextDiv.show();
+            //             currentDiv.hide();
+            //             $(".prev").show();
+
+
+            //             if (nextDiv.hasClass('div5')) {
+            //                 $(".next").text("Submit")
+            //                 $(".prev").hide();
+            //             }
+            //         }
+            //     }
+                
+            // }) -->
+</html>
+
+

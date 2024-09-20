@@ -1,0 +1,76 @@
+body {
+    padding: 0;
+    margin: 0;
+    background: #6d597aa8;
+    font-family: "Space Grotesk", sans-serif;
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+  
+}
+.modal{
+ 
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+   height: 100%;
+   width: 100%;
+   overflow: auto;
+    background-color: black; 
+    background-color: #00000066; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal-content{
+    background-color: #ffdfd8b5;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid grey;
+    width: 30%;
+    border-radius: 26px;
+}
+.modal-content h3{
+    font-size: 40px;
+    text-align: center;
+
+}
+.close {
+    font-size: 20px;
+    font-weight: bold;
+    color: grey;
+    float: right;
+    
+  }
+  
+  .close:hover {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .pages a{
+    padding: 10px 20px;
+    background: red;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    font-size: 20px;
+    border-radius: 7px;
+  }
+  .pages{
+    display: flex;
+    flex-direction: column;
+  }
+  .hero>p{
+font-size: 34px;
+  }
+  .btn{
+    border: none;
+    padding: 12px 49px;
+    font-size: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+  }

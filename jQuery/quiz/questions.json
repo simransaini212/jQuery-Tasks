@@ -1,0 +1,84 @@
+[
+    {
+        "question":"1. Minimum number of fields in each node of a doubly linked list is ",
+        "A":"2" ,
+        "B": "3",
+        "C": "4",
+        "D":"None of the above",
+        "answer": "B"
+    },
+    {
+        "question":"2. A graph in which all vertices have equal degree is known as",
+        "A":"Complete graph" ,
+        "B": "Regular graph",
+        "C": "Multi graph",
+        "D":"Simple graph",
+        "answer": "A"
+    },
+    {
+        "question":"3. Which data structure is used for implementing recursion? ",
+        "A":"Stack" ,
+        "B": "Queue",
+        "C": "List",
+        "D":"Array",
+        "answer": "A"
+    },
+    {
+        "question":"4. The data structure required to check whether an expression contains a balanced parenthesis is? ",
+        "A":"Stack" ,
+        "B": "Queue",
+        "C": "List",
+        "D":"Array",
+        "answer": "B"
+    },
+    {
+        "question":"5. Which of the following is not the application of stack? ",
+        "A":"Data Transfer between two asynchronous process" ,
+        "B": "Compiler Syntax Analyzer",
+        "C": "Tracking of local variables at run time",
+        "D":"A parentheses balancing program",
+        "answer": "A"
+    },
+
+    {
+        "question":"6. Which data structure is needed to convert infix notation to postfix notation?",
+        "A":"Tree" ,
+        "B": "Branch",
+        "C": "Stack",
+        "D":"Queue",
+        "answer": "C"
+    },
+    {
+        "question":"7. What is the value of the postfix expression 6 3 2 4 + – *?",
+        "A":"74" ,
+        "B": "-18",
+        "C": "22",
+        "D":"40",
+        "answer": "B"
+    },
+    {
+        "question":"8. What data structure would you mostly likely see in non recursive implementation of a recursive algorithm?",
+        "A":"Tree" ,
+        "B": "Linked List",
+        "C": "Stack",
+        "D":"Queue",
+        "answer": "C"
+    },
+
+    {
+        "question":"9. Which of the following statement(s) about stack data structure is/are NOT correct?",
+        "A":"Top of the Stack always contain the new node" ,
+        "B": "Stack is the FIFO data structure",
+        "C": "Null link is present in the last node at the bottom of the stack",
+        "D":"Linked List are used for implementing Stacks",
+        "answer": "B"
+    },
+    {
+        "question":"10. The data structure required for Breadth First Traversal on a graph is? ",
+        "A":"Array" ,
+        "B": "Stack",
+        "C": "Tree",
+        "D":"Queue",
+        "answer": "D"
+    }
+]

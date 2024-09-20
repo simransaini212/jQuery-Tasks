@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sail&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Sue+Ellen+Francisco&display=swap"
+        rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Quiz</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="hero" style="margin-top: 120px;">
+            <h1 style="font-size: 4rem; text-align: center; margin-bottom: 50px;">Data Structures Quiz</h1>
+            <p style="font-size:2rem; text-align: center; margin-bottom: 50px;">Mark the correct option and check you
+                result.</p>
+            <div class="mcq">
+                <div class="result"></div>
+                <ul id="questions-list" style="list-style: none;"></ul>
+                <div>
+                    <button type="submit" class="btn">Next</button>
+                    <button type="reset" class="Pbtn">Play Again</button>
+                </div>
+            </div>
+
+            
+        </div>
+
+    </div>
+    <script>
+       
+    const jsonUrl= 'questions.json';
+    var sol;
+    $.getJSON(jsonUrl,function(data){
+        $('#questions-list').empty();
+        data.forEach(function(item, index) {
+            $('#questions-list').append(
+`<li class="ques" data-answer="${item.answer}" style="display: ${index === 0 ? 'block' : 'none'};">
+    <h2> ${item.question}</h2>
+    <ul class="options" style="list-style:none; padding:0;">
+    <li><input type="radio" id="optA" name="options" value="A"> <label for=optA>${item.A}</label></li>
+    <li><input type="radio" id="optB" name="options" value="B"> <label for=optB>${item.B}</label></li>
+    <li><input type="radio" id="optC" name="options" value="C"> <label for=optC>${item.C}</label></li>
+    <li><input type="radio" id="optD" name="options" value="D"> <label for=optD>${item.D}</label> </li>
+    </ul>
+    </li>`
+
+        );
+        
+        });
+    })
+ 
+
+
+        $(document).ready(function () {
+            var correct=0;
+            var wrong=0;
+            var nagMarking=0;
+            $('.ques').siblings().hide();
+            $('.result').hide();
+            $('.Pbtn').hide();
+            $('.Pbtn').click(function () {
+                location.reload();
+            });
+
+            $('.btn').click(function () {
+               
+                
+                let currentQues = $('.ques:visible');
+                let nextQues = currentQues.next('li');
+                currentQues.hide();
+                nextQues.show();
+                const selectedOption = currentQues.find('input:radio:checked').val();
+                const correctAnswer = currentQues.data('answer');
+                console.log(selectedOption);
+                if (selectedOption === correctAnswer) {
+                    correct++;
+                    // console.log(correct);
+                }
+                else{
+                    wrong++;
+                }
+                if (nextQues.length == 0) {
+                    let negative_marking=0.5;
+                    let duducted_marks=wrong*negative_marking;
+                    console.log(duducted_marks);
+                    console.log(correct);
+                    $('.result').show();
+                    $('.result').html('<p style="font-size:45px"> Your Score is: ' + (correct-duducted_marks) + '</p> <p style="font-size:45px"> Correct Answers: ' +correct+'</p><p style="font-size:45px"> Wrong: ' +wrong+'</p>');
+
+                    $('.btn').hide();
+                    $('.Pbtn').show();
+                } 
+           
+
+            })
+        });
+    </script>
+</body>
+
+</html>
