@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
+    <title>To-Do List</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="hero">
+            <h2>Today's To-Do</h2>
+
+            <div class="todo">
+                <form action="" class="add_to_do_form">
+                    <label for="">Enter your Tasks</label>
+
+                    <div style="display: flex;flex-direction: column;gap: 10px;">
+                        <input type="text">
+                        <div class="error">Please Add a Task</div>
+                    </div>
+                    <div>
+                    <button type="submit" class="addTodo">Add Task</button>
+                </div>
+                </form>
+                <div class="mainDiv">
+                    <div class="task">
+                        <div style="display: flex; justify-content: space-between;" class="task-h">
+                            <h3>Task List</h3>
+                            <p></p>
+                        </div>
+                        <ul>
+
+                        </ul>
+                    </div>
+                    <div class="completed">
+                        <div style="display: flex; justify-content: space-between;" class="comp-h">
+                            <h3>Completed Tasks</h3>
+                            <p></p>
+                        </div>
+                        <ul>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            let deleted;
+            var totalTask = 0;
+            var compTask = 0;
+            $('.error').hide();
+            $(".add_to_do_form").submit(function () {
+                event.preventDefault();
+                let NewTask = $("input:text").val();
+                if (NewTask.trim() === "") {
+                    // $('.error').remove();
+                    $('.error').show();
+                }
+                else {
+                    totalTask++;
+                    $('.task-h>p').text('total tasks=' + totalTask)
+                    $('.task>ul').append('<li style="list-style:none;"><div> <input style="margin-right:30px;"class="check" type="checkbox"><span class="task-title">' + NewTask + '</span></div><div><button class="delete"> Delete</button></div></li> \n').sortable().dragable;
+                    updateTaskStorage();
+                    $('input:text').val('');
+
+
+                }
+            });
+            $("input[type=text]").keyup(function () { 
+                if ($("input:text").val().trim() != "") {
+                    $('.error').hide();
+
+                }
+            })
+            $(document).on('change', 'input[type=checkbox]', function () {
+
+                if ($(this).is(':checked')) {
+                    compTask++;
+                    totalTask--;
+                    deleted = $(this).closest('li').find('.task-title').text();
+                    $(this).closest('li').remove();
+
+                    $('.completed>ul').append('<li style="list-style:none;"><div class="comp-title"> ' + deleted + '</div><div><button class="c-delete"> Delete</button></div></li>');
+                    $('.comp-h>p').text('Completed =' + compTask)
+
+                    $('.task-h>p').text('total tasks=' + totalTask)
+                    updateTaskStorage();
+                }
+
+            });
+            $(document).on('click', '.delete', function () {  //delet button for new task
+                totalTask--;
+                $(this).closest('li').remove();
+
+                $('.task-h>p').text('total tasks=' + totalTask);
+                updateTaskStorage();
+
+            });
+            $(document).on('click', '.c-delete', function () {  //delet button for completed task
+                compTask--;
+                $(this).closest('li').remove();
+
+                $('.comp-h>p').text('Completed=' + compTask);
+                updateTaskStorage();
+
+            });
+
+            function updateTaskStorage(){
+                let pendingTasks=[];
+                $('.task-title').each(function(key,element){
+                    pendingTasks.push($(element).html());
+                })
+                console.log(pendingTasks);
+                console.log(JSON.stringify(pendingTasks));
+                localStorage.setItem('pendingTasks',JSON.stringify(pendingTasks));
+                let completeTasks=[];
+                $('.comp-title').each(function(key,element){
+                    completeTasks.push($(element).html());
+                })
+                localStorage.setItem('completedTasks',JSON.stringify(completeTasks));
+                
+            }
+
+
+            function populateTasksFromLocalStorage(){
+                let pendingTasks= localStorage.getItem('pendingTasks');
+                
+                if(pendingTasks){
+                    let pendingTasksArray=JSON.parse(pendingTasks);
+                    console.log(pendingTasksArray);
+                    pendingTasksArray.forEach(function(element,key){
+                        totalTask++;
+                        $('.task-h>p').text('total tasks=' + totalTask)
+                        $('.task>ul').append('<li style="list-style:none;"><div> <input style="margin-right:30px;"class="check" type="checkbox"><span class="task-title">' + element + '</span></div><div><button class="delete"> Delete</button></div></li> \n').sortable().dragable;
+                        
+                    })
+                }
+               let completeTasks=localStorage.getItem('completeTasks') ;
+               if(completeTasks){
+                let completeTasksArray= JSON.parse(completeTasks);
+                console.log(completeTasksArray);
+                completeTasksArray.forEach(function(element,key){
+                    completeTasks++;
+                    $(".comp-h>p").text('completed tasks=' +compTask)
+                    $('.completed>ul').append('<li style="list-style:none;"><div class="comp-title">'+ element + '</div><div><button class="c-delete"> Delete</button></div></li>')
+                })
+            }
+        }
+            populateTasksFromLocalStorage();
+            
+        });
+    </script>
+</body>
+
+</html>
