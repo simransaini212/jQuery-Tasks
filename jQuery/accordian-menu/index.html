@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Accordian Menu</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="hero">
+            <h2>Accordion Menu</h2>
+            <div class="accordian">
+                <div class="Accor_1">
+                    <div class="Heading">
+                    <h3 class="heading">My Account</h3>
+                <span class="mark"></span>
+                </div>
+                    <p class="ans">
+                        Item-1
+                    </p>
+                    <p class="ans">
+                        Item-2
+                    </p>
+                    <p class="ans">
+                        Item-3
+                    </p>
+                </div>
+
+                <div class="Accor_1">
+                    <div class="Heading">
+                    <h3 class="heading">About</h3>
+                    <span class="mark"></span>
+                </div>
+                    <p class="ans">
+                      Item-1
+                    </p>
+                </div>
+                <div class="Accor_1">
+                    <div class="Heading">
+                    <h3 class="heading">Support</h3>
+                    <span class="mark"></span>
+                </div>
+                    <p class="ans">
+                        Item-1
+                    </p>
+                </div>
+                <div class="Accor_1">
+                    <div class="Heading">
+                    <h3 class="heading">Log Out</h3>
+                    <span class="mark"></span>
+                </div>
+                    <p class="ans">
+                        Item-1
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('.ans').hide();
+            $('.Heading').click(function () {
+               
+               var currentAns= $(this).siblings('.ans');
+              $(this).siblings('.mark').text('-');
+            //    $(this).addClass('active');
+               $(this).toggleClass('active')
+               currentAns.slideToggle(); 
+              console.log($(this).find('.mark')[0]);
+            })
+
+        });
+
+
+    </script>
+</body>
+
+</html>
