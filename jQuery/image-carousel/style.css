@@ -1,0 +1,68 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+h1{
+    font-size: 3rem;
+    text-align: center;
+}
+
+.carousel {
+    padding: 30px;
+    display: flex;
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.prev,
+.next {
+    padding: 0px 12px;
+    font-size: 45px;
+    border: none;
+    color: #c5c5c5;
+    position: absolute;
+    background: #80808085;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.prev {
+    left: 415px;
+    bottom: 360px;
+}
+
+.next {
+    bottom: 360px;
+    right: 412px;
+}
+
+img {
+    width: 80%;
+    height: 20%;
+    border-radius: 30px;
+}
+
+.images {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.images div {
+    width: 60%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+p{
+    font-size: 40px;
+}

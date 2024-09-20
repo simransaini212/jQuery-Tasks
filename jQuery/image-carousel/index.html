@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- slick Library css& Js-->
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/> 
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<!-- slick Library end -->				
+    <title>Img Toggle</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Image Carousel</h1>
+
+        <div class="carousel">
+            <div class="images">
+                <div class=""><img src="images/1.jpg" alt=""></div>
+                <div class=""><img src="images/2.jpg" alt=""></div>
+                <div class=""><img src="images/3.jpg" alt=""></div>
+                <div class=""><img src="images/6.jpg" alt=""></div>
+                <div class=""><img src="images/5.jpg" alt=""></div>
+                <div class=""><img src="images/7.jpg" alt=""></div>
+            </div>
+            <p class="count"></p>
+            <div class="buttons">
+                <button class="prev">&lt</button>
+                <button class="next">></button>
+            </div>
+        </div>
+
+
+    </div>
+    <script>
+    // $('.images').slick();  //Jquery Library for Carousel
+        $(document).ready(function () {
+            let number=0;
+            function showNextSlide(){ //fn for autoSlide
+                let currentImg = $('.images> div:visible');
+                let nextImg = currentImg.next('div');
+                let firstImg = $('.images div').first();
+                if (nextImg.length == 0) {
+                    currentImg.hide();
+                    currentImg = firstImg;
+                    currentImg.show();
+                    number=1;
+
+                }
+                else {
+                    currentImg.hide();
+                    nextImg.show();
+                    number++;
+                }
+                $('.count').html(number+"/6 image")
+            }
+
+            $('.images > div').first().siblings().hide();
+
+            console.log();
+            $('.next').click(function () {
+                showNextSlide();
+            });
+            $('.prev').click(function () {
+                let currentImg = $('.images> div:visible');
+                let prevImg = currentImg.prev();
+                let lastImg =  $('.images div').last();
+                if (prevImg.length == 0) {
+                    currentImg.hide();
+                    currentImg = lastImg;
+                    currentImg.show();
+                    number=6
+                }
+                else {
+                    currentImg.hide();
+                    prevImg.show();
+                    number--;
+                }
+                $('.count').html(number+"/6 image")
+            });
+
+            setInterval(function(){
+                showNextSlide();
+            },5000)
+        });
+    </script>
+</body>
+
+</html>
